@@ -8,7 +8,15 @@ class Flip
   def flip_part(start_position, end_position)
     start_position = 0 if start_position < 0
     end_position = 9 if end_position > 9
-    @input_array[start_position..end_position] = @input_array[start_position..end_position].reverse
+    return if end_position < start_position
+
+    while start_position < end_position
+      start = @input_array[start_position]
+      @input_array[start_position] = @input_array[end_position]
+      @input_array[end_position] = start
+      start_position += 1
+      end_position -= 1
+    end
   end
 end
 
@@ -58,14 +66,12 @@ def flip_part(start_position, end_position)
   end_position = 9 if end_position > 9
   return if end_position < start_position
 
-  switches = ((end_position - start_position)/2).ceil
-  count = 0
-
-  until count == switches
-    start = @input_array[start_position + count]
-    @input_array[start_position + count] = @input_array[end_position - count]
-    @input_array[end_position - count] = start
-    count += 1
+  while start_position < end_position
+    start = @input_array[start_position]
+    @input_array[start_position] = @input_array[end_position]
+    @input_array[end_position] = start
+    start_position += 1
+    end_position -= 1
   end
 end
 
