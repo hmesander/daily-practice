@@ -7,7 +7,7 @@ class Flip
 
   def flip_part(start_position, end_position)
     start_position = 0 if start_position < 0
-    end_position = 9 if end_position > 9
+    end_position = (@input_array.length - 1) if end_position > (@input_array.length - 1)
     return if end_position < start_position
 
     while start_position < end_position
