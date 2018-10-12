@@ -11,9 +11,7 @@ class Flip
     return if end_position < start_position
 
     while start_position < end_position
-      start = @input_array[start_position]
-      @input_array[start_position] = @input_array[end_position]
-      @input_array[end_position] = start
+      @input_array[start_position], @input_array[end_position] = @input_array[end_position], @input_array[start_position]
       start_position += 1
       end_position -= 1
     end
@@ -67,9 +65,7 @@ def flip_part(start_position, end_position)
   return if end_position < start_position
 
   while start_position < end_position
-    start = @input_array[start_position]
-    @input_array[start_position] = @input_array[end_position]
-    @input_array[end_position] = start
+    @input_array[start_position], @input_array[end_position] = @input_array[end_position], @input_array[start_position]
     start_position += 1
     end_position -= 1
   end
