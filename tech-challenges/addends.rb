@@ -10,17 +10,12 @@
 # return [0, 1].
 
 def two_sum(nums, target)
-  index1 = 0
-  index2 = index1 + 1
-  until index1 == (nums.size - 1)
-    until index2 == nums.size
-      if nums[index1] + nums[index2] == target
-        return [index1, index2]
-      end
-      index2 += 1
+  indexes = {}
+  nums.each_with_index do |num, idx|
+    if indexes.has_key?(target - num)
+      return [indexes[target - num], idx] 
     end
-    index1 += 1
-    index2 = index1 + 1
+    indexes[num] = idx
   end
 end
 
