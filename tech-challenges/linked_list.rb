@@ -29,16 +29,46 @@ class LinkedList
   end
 
   def output
-    print @head.val
-    until @head.next == nil
-      @head = @head.next
-      print @head.val
+    head = @head
+    print head.val
+    until head == @tail
+      head = head.next
+      print head.val
     end
   end
 
-  def reverse
-
+  def reversed_num
+    temp = []
+    temp << @head.val
+    until @head.next == nil
+      @head = @head.next
+      temp << @head.val
+    end
+    temp.reverse.join.to_i
   end
+
+  def add_reversed(num1, num2)
+    num1 + num2
+  end
+
+end
+
+def construct_answer(num)
+  array = num.to_s.chars
+  node = Node.new(array.shift.to_i)
+  ll_answer = LinkedList.new(node)
+  array.each do |string_num|
+    node = Node.new(string_num.to_i)
+    ll_answer.append(node)
+  end
+  ll_answer
+end
+
+def process(ll_1, ll_2)
+  sum = ll_1.reversed_num + ll_2.reversed_num
+  ans = construct_answer(sum).reversed_num
+  final = construct_answer(ans)
+  final.output
 end
 
 node_1 = Node.new(2)
@@ -48,7 +78,14 @@ node_3 = Node.new(3)
 ll_1 = LinkedList.new(node_1)
 ll_1.append(node_2)
 ll_1.append(node_3)
-ll_1.output
-ll_1.reverse
 
-# puts add_two_numbers([2, 4, 3], [5, 6, 4])
+node_4 = Node.new(5)
+node_5 = Node.new(6)
+node_6 = Node.new(4)
+
+ll_2 = LinkedList.new(node_4)
+ll_2.append(node_5)
+ll_2.append(node_6)
+
+process(ll_1, ll_2)
+
