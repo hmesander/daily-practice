@@ -9,6 +9,9 @@
 #   Explanation: 342 + 465 = 807.
 
 
+
+
+# Node object
 class Node
   attr_accessor :val, :next
   def initialize(val)
@@ -17,6 +20,9 @@ class Node
   end
 end
 
+
+
+# Linked List object
 class LinkedList
   def initialize(head)
     @head = head
@@ -28,15 +34,6 @@ class LinkedList
     @tail = @tail.next
   end
 
-  def output
-    head = @head
-    print head.val
-    until head == @tail
-      head = head.next
-      print head.val
-    end
-  end
-
   def reversed_num
     temp = []
     temp << @head.val
@@ -46,13 +43,13 @@ class LinkedList
     end
     temp.reverse.join.to_i
   end
-
-  def add_reversed(num1, num2)
-    num1 + num2
-  end
-
 end
 
+
+
+
+
+# Helper methods
 def construct_answer(num)
   array = num.to_s.chars
   node = Node.new(array.shift.to_i)
@@ -61,16 +58,24 @@ def construct_answer(num)
     node = Node.new(string_num.to_i)
     ll_answer.append(node)
   end
-  ll_answer
+  puts ll_answer
 end
 
-def process(ll_1, ll_2)
+def reverse(num)
+  num.to_s.chars.reverse.join.to_i
+end
+
+def add_two_numbers(ll_1, ll_2)
   sum = ll_1.reversed_num + ll_2.reversed_num
-  ans = construct_answer(sum).reversed_num
-  final = construct_answer(ans)
-  final.output
+  ans = reverse(sum)
+  construct_answer(ans)
 end
 
+
+
+
+
+# Test
 node_1 = Node.new(2)
 node_2 = Node.new(4)
 node_3 = Node.new(3)
@@ -87,5 +92,5 @@ ll_2 = LinkedList.new(node_4)
 ll_2.append(node_5)
 ll_2.append(node_6)
 
-process(ll_1, ll_2)
+add_two_numbers(ll_1, ll_2)
 
